@@ -20,7 +20,7 @@
     --pink: #ff2fd0;
     --violet: #a855f7;
     --cyan: #00e0ff;
-    --grad: linear-gradient(100deg, var(--pink) 0%, var(--violet) 45%, var(--cyan) 100%);
+    --grad: linear-gradient(90deg, var(--pink) 0%, var(--violet) 50%, var(--cyan) 100%);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -61,7 +61,7 @@
     cursor:pointer;border:1px solid transparent;transition:transform .15s ease, opacity .15s ease;
   }
   .btn:hover{transform:translateY(-2px);}
-  .btn-primary{background:var(--grad);color:#0b0c10;}
+  .btn-primary{background:var(--grad);background-clip:padding-box;color:#0b0c10;}
   .btn-ghost{background:transparent;border-color:var(--line);color:var(--text);}
   .btn-ghost:hover{border-color:var(--violet);}
 
@@ -136,6 +136,7 @@
   .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
   .value-card{
     background:var(--panel-2);border:1px solid var(--line);border-radius:16px;padding:26px 22px;
+    min-width:0;overflow-wrap:break-word;
   }
   .value-card .ic{
     width:44px;height:44px;border-radius:11px;margin-bottom:16px;
@@ -178,7 +179,8 @@
   .model-body .more{margin-top:auto;font-size:13.5px;font-weight:600;color:var(--cyan);}
 
   /* ---------- spec table ---------- */
-  .spec-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--panel);}
+  .spec-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--panel);position:relative;}
+  .spec-scroll-hint{display:none;}
   table.spec{width:100%;border-collapse:collapse;min-width:760px;}
   table.spec th, table.spec td{padding:16px 20px;text-align:left;font-size:14px;border-bottom:1px solid var(--line);}
   table.spec th{color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;font-size:11.5px;}
@@ -247,6 +249,11 @@
     nav.links{display:none;}
     .nav-cta .btn-ghost{display:none;}
     .burger{display:flex;}
+    .spec-scroll-hint{display:block;text-align:center;font-size:12.5px;color:var(--muted);margin-top:10px;}
+    .spec-table-wrap::after{
+      content:"";position:absolute;top:0;right:0;bottom:0;width:28px;pointer-events:none;
+      background:linear-gradient(90deg, transparent, var(--panel));
+    }
   }
 </style>
 </head>
@@ -307,7 +314,7 @@
       </div>
       <div class="hero-stats">
         <div><b>0€</b><span>à avancer, installation gratuite</span></div>
-        <div><b>+</b><span>de temps passé dans votre établissement</span></div>
+        <div><b>+</b><span>vos clients restent plus longtemps, sans avoir besoin de partir</span></div>
         <div><b>↑</b><span>chiffre d'affaires généré</span></div>
       </div>
     </div>
@@ -369,7 +376,7 @@
         </div>
         <div class="model-body">
           <h3>Borne Murale Blanche</h3>
-          <p>Borne murale compacte et lumineuse, écran tactile 32". Idéale pour bars et petites surfaces.</p>
+          <p>Borne murale compacte avec vérification d'identité intégrée. Idéale pour bars et petites surfaces, finition blanche.</p>
           <div class="specs-mini">
             <span>600×1130×340 mm</span>
             <span>75 kg</span>
@@ -387,7 +394,7 @@
         </div>
         <div class="model-body">
           <h3>Borne Murale Noire</h3>
-          <p>Même format en finition noire mate, pour une intégration plus sobre au décor.</p>
+          <p>Même modèle mural avec vérification d'identité intégrée, en finition noire mate, pour une intégration plus sobre au décor.</p>
           <div class="specs-mini">
             <span>600×1130×340 mm</span>
             <span>75 kg</span>
@@ -405,7 +412,7 @@
         </div>
         <div class="model-body">
           <h3>Borne sur Pied Blanche</h3>
-          <p>Modèle sur pied avec vérification d'identité intégrée et base amovible, finition blanche.</p>
+          <p>Même borne avec vérification d'identité intégrée, sur pied à base déplaçable pour les espaces plus grands, finition blanche.</p>
           <div class="specs-mini">
             <span>600×1680×340 mm</span>
             <span>85 kg</span>
@@ -423,7 +430,7 @@
         </div>
         <div class="model-body">
           <h3>Borne sur Pied Noire</h3>
-          <p>Même modèle sur pied en finition noire mate, pensé pour les ambiances nocturnes.</p>
+          <p>Même borne avec vérification d'identité intégrée, sur pied à base déplaçable, en finition noire mate pour les ambiances nocturnes et une intégration plus sobre au décor.</p>
           <div class="specs-mini">
             <span>600×1680×340 mm</span>
             <span>85 kg</span>
@@ -438,6 +445,43 @@
 </section>
 
 <!-- ============ SPEC TABLE ============ -->
+<section class="values" id="zero-risque">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Aucun risque, tout à gagner</span>
+      <h2>Un essai <span class="grad-text">100% gratuit</span>, sans engagement</h2>
+      <p>On installe, vous testez. Si la borne ne vous convient pas, on la retire — sans frais, sans justification. Le seul risque, c'est de ne pas essayer.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
+        <h3>Zéro coût, zéro effort</h3>
+        <p>Installation, approvisionnement et maintenance entièrement pris en charge par Vap'Flash+. Vous n'avez rien à gérer, rien à avancer.</p>
+      </div>
+      <div class="value-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Vos clients restent plus longtemps</h3>
+        <p>En permettant à vos clients de se réapprovisionner sur place, vous évitez qu'ils sortent ou écourtent leur soirée. Ils profitent plus longtemps de votre établissement.</p>
+      </div>
+      <div class="value-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg></div>
+        <h3>Un vrai plus pour votre chiffre d'affaires</h3>
+        <p>Plus vos clients restent, plus ils consomment. La borne devient une source de revenu additionnelle, sans effort supplémentaire de votre équipe.</p>
+      </div>
+      <div class="value-card">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Pas convaincu ? On la retire.</h3>
+        <p>Après la période d'essai, si la borne ne correspond pas à votre établissement, elle est désinstallée gratuitement. Aucun engagement de durée.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:44px;">
+      <a href="#contact" class="btn btn-primary">Demander mon essai gratuit</a>
+    </div>
+  </div>
+</section>
+
 <section id="fiches" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="wrap">
     <div class="section-head">
@@ -476,8 +520,8 @@
             <td class="label">Pose</td>
             <td>Murale</td>
             <td>Murale</td>
-            <td>Sur pied, base amovible</td>
-            <td>Sur pied, base amovible</td>
+            <td>Sur pied, base déplaçable</td>
+            <td>Sur pied, base déplaçable</td>
           </tr>
           <tr>
             <td class="label">Finition</td>
@@ -496,7 +540,7 @@
           </tr>
           <tr>
             <td class="label">Connectivité</td>
-            <td colspan="4">4G, Wi-Fi 6, Bluetooth — supervision à distance</td>
+            <td colspan="4">Wi-Fi (connexion au réseau de votre établissement), Bluetooth</td>
           </tr>
           <tr>
             <td class="label">Paiement</td>
@@ -504,54 +548,12 @@
           </tr>
           <tr>
             <td class="label">Sécurité</td>
-            <td colspan="4">Vérification d'identité, reconnaissance faciale, double verrouillage, alarme de surchauffe</td>
-          </tr>
-          <tr>
-            <td class="label">Garantie</td>
-            <td colspan="4">1 an, support technique à vie</td>
+            <td colspan="4">Vérification d'identité, reconnaissance faciale</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="spec-note">* Dimensions et caractéristiques indicatives, à confirmer avant commande définitive selon la configuration exacte du lieu.</p>
-  </div>
-</section>
-
-<!-- ============ ZERO RISQUE ============ -->
-<section class="values" id="zero-risque">
-  <div class="wrap">
-    <div class="section-head center">
-      <span class="eyebrow">Aucun risque, tout à gagner</span>
-      <h2>Un essai <span class="grad-text">100% gratuit</span>, sans engagement</h2>
-      <p>On installe, vous testez. Si la borne ne vous convient pas, on la retire — sans frais, sans justification. Le seul risque, c'est de ne pas essayer.</p>
-    </div>
-
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
-        <h3>Zéro coût, zéro effort</h3>
-        <p>Installation, approvisionnement et maintenance entièrement pris en charge par Vap'Flash+. Vous n'avez rien à gérer, rien à avancer.</p>
-      </div>
-      <div class="value-card">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h3>Vos clients restent plus longtemps</h3>
-        <p>En permettant à vos clients de se réapprovisionner sur place, vous évitez qu'ils sortent ou écourtent leur soirée. Ils profitent plus longtemps de votre établissement.</p>
-      </div>
-      <div class="value-card">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg></div>
-        <h3>Un vrai plus pour votre chiffre d'affaires</h3>
-        <p>Plus vos clients restent, plus ils consomment. La borne devient une source de revenu additionnelle, sans effort supplémentaire de votre équipe.</p>
-      </div>
-      <div class="value-card">
-        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#vgrad)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h3>Pas convaincu ? On la retire.</h3>
-        <p>Après la période d'essai, si la borne ne correspond pas à votre établissement, elle est désinstallée gratuitement. Aucun engagement de durée.</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:44px;">
-      <a href="#contact" class="btn btn-primary">Demander mon essai gratuit</a>
-    </div>
+    <p class="spec-scroll-hint">Faites glisser le tableau vers la gauche pour voir les autres modèles →</p>
   </div>
 </section>
 
@@ -567,7 +569,7 @@
     <div class="faq">
       <details open>
         <summary>L'installation d'une borne a-t-elle un coût pour mon établissement ?</summary>
-        <p>L'installation et la mise en service sont prises en charge par Vap'Flash+. Contactez-nous pour connaître les modalités exactes adaptées à votre établissement.</p>
+        <p>Non, c'est totalement gratuit. L'installation et la mise en service sont entièrement prises en charge par Vap'Flash+, sans aucun coût pour votre établissement. Contactez-nous pour organiser une visite technique.</p>
       </details>
       <details>
         <summary>Qui gère le réapprovisionnement et l'entretien ?</summary>
@@ -583,7 +585,7 @@
       </details>
       <details>
         <summary>Quel espace faut-il prévoir dans mon établissement ?</summary>
-        <p>Cela dépend du modèle : les versions murales occupent environ 60 cm de large sur un pan de mur, les versions sur pied nécessitent une emprise au sol d'environ 60 × 34 cm. Voir la section fiches techniques pour le détail par modèle.</p>
+        <p>Cela dépend du modèle : les versions murales occupent environ 60 cm de large sur un pan de mur, les versions sur pied nécessitent une emprise au sol d'environ 60 × 34 cm. Voir la section fiches techniques pour le détail par modèle. Il faut simplement une prise électrique à proximité et un accès au wifi pour le terminal de paiement par carte bancaire — l'idéal est un emplacement proche du bar ou de la zone fumeur.</p>
       </details>
       <details>
         <summary>Quels moyens de paiement les clients peuvent-ils utiliser ?</summary>
@@ -591,11 +593,19 @@
       </details>
       <details>
         <summary>Que se passe-t-il en cas de panne ?</summary>
-        <p>Les bornes sont couvertes par une garantie avec support technique. Contactez-nous directement en cas de souci, une intervention est organisée rapidement.</p>
+        <p>En cas de souci, contactez-nous directement : on se déplace rapidement pour réparer la borne sur place, ou la retirer si besoin. Aucune démarche ni aucun frais de votre côté, tout est pris en charge.</p>
       </details>
       <details>
         <summary>Combien de temps prend l'installation ?</summary>
         <p>Quelques heures maximum : la pose est rapide et n'immobilise pas votre établissement.</p>
+      </details>
+      <details>
+        <summary>Que trouve-t-on dans les distributeurs ?</summary>
+        <p>Nos bornes proposent principalement des cigarettes électroniques JNR Falcon, avec plusieurs goûts disponibles (Watermelon, Watermelon Ice, Strawberry Watermelon Ice, Blue Razz, et bien d'autres). Elles proposent aussi des câbles de recharge ainsi que des powerbanks USB-C et Lightning, pour permettre à vos clients de recharger leur téléphone en cas de batterie faible pendant leur soirée.</p>
+      </details>
+      <details>
+        <summary>Quelle part des revenus je touche ?</summary>
+        <p>Cela se définit ensemble selon votre établissement et sa fréquentation — contactez-nous pour en discuter. Dans tous les cas, l'avantage principal reste que vos clients restent plus longtemps chez vous, ce qui profite à l'ensemble de votre chiffre d'affaires, pas seulement à la borne.</p>
       </details>
     </div>
   </div>
